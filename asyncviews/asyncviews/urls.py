@@ -23,5 +23,4 @@ urlpatterns = [
     # path('api/', views.api)
     path('api/', views.async_view),
     path('sync/', views.sync_view),
-    path('exercise/', views.async_exercise),
 ]
