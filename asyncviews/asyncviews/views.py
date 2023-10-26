@@ -53,3 +53,22 @@ def sync_view(request):
     http_call_sync()
     return HttpResponse('Blocking HTTP Request')
 
+'''
+////////////////////////////////////////////////////////////||
+Exercício:                                                  ||
+criar uma view assincrona utilizando asyncio.sleep()        ||
+////////////////////////////////////////////////////////////||
+'''
+
+async def http_async_exercise():
+    for num in range(1, 5):
+        await asyncio.sleep(1)
+        print(f'Tempo em espera: {num} segundos.')
+    async with httpx.AsyncClient() as client:
+        r = await client.get('https://httpbin.org')
+        print(r)
+
+async def async_exercise(request):
+    loop = asyncio.get_event_loop()
+    loop.create_task(http_async_exercise())
+    return HttpResponse(f'Você nem notou, mas a contagem não precisou finalizar para esta mensagem aparecer! Exercício concluído.')
